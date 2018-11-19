@@ -53,7 +53,7 @@ func (browser EnergyBrowserCom) WriteEnergyValues(consumption uint32, production
 	}
 	fmt.Printf("tx sent to ConsumptionContract: %s \n", tx.Hash().Hex())
 	auth = browser.getAuthObject(browser.eth.Client)
-	//auth.Nonce = auth.Nonce.Add(auth.Nonce, big.NewInt(1))
+	auth.Nonce = auth.Nonce.Add(auth.Nonce, big.NewInt(1))
 	fmt.Println(auth.Nonce)
 	tx, err = browser.productionContract.SetEnerProduction(auth, production)
 	if err != nil {
