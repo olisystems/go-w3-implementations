@@ -1,0 +1,139 @@
+[
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "timestampParm",
+				"type": "uint256"
+			},
+			{
+				"name": "blockNumberStartParm",
+				"type": "uint256"
+			},
+			{
+				"name": "blockNumberEndParm",
+				"type": "uint256"
+			},
+			{
+				"name": "blockHashParm",
+				"type": "string"
+			}
+		],
+		"name": "setBackup",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "verifiedBackup",
+		"outputs": [
+			{
+				"name": "timestamp",
+				"type": "uint256"
+			},
+			{
+				"name": "blockNumberStart",
+				"type": "uint256"
+			},
+			{
+				"name": "blockNumberEnd",
+				"type": "uint256"
+			},
+			{
+				"name": "blockHash",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "verifiedHash",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "verifiers",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "checkHashes",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"name": "verifiersList",
+				"type": "address[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "timestamp",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "blockNumberStart",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "blockNumberEnd",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "blockHash",
+				"type": "string"
+			}
+		],
+		"name": "VerifiedBackup",
+		"type": "event"
+	}
+]
