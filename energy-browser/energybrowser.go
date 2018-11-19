@@ -49,23 +49,28 @@ func (browser EnergyBrowserCom) WriteEnergyValues(consumption uint32, production
 	fmt.Println(auth.Nonce)
 	tx, err := browser.consumptionContract.SetEnerConsumption(auth, consumption)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println(err.Error())
 	}
-	fmt.Printf("tx sent to ConsumptionContract: %s \n", tx.Hash().Hex())
+	if tx != nil {
+		fmt.Printf("tx sent to ConsumptionContract: %s \n", tx.Hash().Hex())
+	}
+
 	auth = browser.getAuthObject(browser.eth.Client)
 	auth.Nonce = auth.Nonce.Add(auth.Nonce, big.NewInt(1))
 	fmt.Println(auth.Nonce)
 	tx, err = browser.productionContract.SetEnerProduction(auth, production)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println(err.Error())
 	}
-	fmt.Printf("tx sent to ProductionContract: %s \n", tx.Hash().Hex())
+	if tx != nil {
+		fmt.Printf("tx sent to ProductionContract: %s \n", tx.Hash().Hex())
+	}
 }
 
 func (browser EnergyBrowserCom) getAuthObject(_client *ethclient.Client) *bind.TransactOpts {
 	nonce, err := _client.PendingNonceAt(context.Background(), browser.from)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println(err.Error())
 	}
 
 	auth := bind.NewKeyedTransactor(browser.privateKey)
