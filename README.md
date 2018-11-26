@@ -85,3 +85,8 @@ https://astaxie.gitbooks.io/build-web-application-with-golang/en/
 
 Sqlite3
 https://www.sqlite.org/index.html
+
+## TODO
+
+- [ ] Error handling
+- [ ] Setup script for database
