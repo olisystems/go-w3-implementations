@@ -54,6 +54,8 @@ func GetPassword() string {
 
 Just run _go build_ in the root directory to build the main package in _main.go_
 
+Run _go build productionsevents.go_ in the ./events directory to build the events package.
+
 ### Cross-compile for any target system
 
 Just use [xgo](https://github.com/karalabe/xgo) and the go toolchain which will make your live easy.
@@ -68,9 +70,38 @@ It will download a docker image which has all the necessary flags and environmen
 
 Run xgo in the root folder with:
 
-```
+```bash
 $ xgo --targets=linux/arm-7 ./
 ```
+
+or
+
+```
+$ xgo --targets=linux/arm-7 ./events/.
+```
+
+#### IMPORTANT notes for compiling the events package for Parity Clients
+
+If running a Parity Client one must first change the gen*log_json.go type. Therefore change the following code in \_go-ethereum/core/types/gen_log_json.go*:
+
+From:
+
+```go
+if dec.TxHash == nil {
+    return errors.New("missing required field 'transactionHash' for Log")
+}
+l.TxHash = *dec.TxHash
+```
+
+To:
+
+```go
+if dec.TxHash != nil {
+    l.TxHash = \*dec.TxHash
+}
+```
+
+A Github issue and pull request will be provided if existent!
 
 ## Documentation
 

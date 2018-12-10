@@ -33,7 +33,8 @@ func sendEnergyValue(db *database.Database, eth *ethereum.Ethereum, browser *ene
 	result := db.ReadFromMeter("ORDER BY timestamp DESC LIMIT 1")
 
 	for _, element := range result {
-		fmt.Println(element)
+		writeout := fmt.Sprintf("Current database value: %d", element)
+		fmt.Println(writeout)
 		browser.WriteEnergyValues(uint32(element.Consumption), uint32(element.Production))
 	}
 }

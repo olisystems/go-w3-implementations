@@ -20,8 +20,8 @@ type EnergyBrowserCom struct {
 	eth                 *ethereum.Ethereum
 	from                common.Address
 	privateKey          *ecdsa.PrivateKey
-	productionContract  *energyproduction.Energyproduction
-	consumptionContract *energyconsumption.Energyconsumption
+	ProductionContract  *energyproduction.Energyproduction
+	ConsumptionContract *energyconsumption.Energyconsumption
 }
 
 func NewEnergyBrowser(eth *ethereum.Ethereum, from common.Address, privateKey *ecdsa.PrivateKey) *EnergyBrowserCom {
@@ -39,15 +39,15 @@ func NewEnergyBrowser(eth *ethereum.Ethereum, from common.Address, privateKey *e
 		eth:                 eth,
 		from:                from,
 		privateKey:          privateKey,
-		productionContract:  productionInstance,
-		consumptionContract: consumptionInstance,
+		ProductionContract:  productionInstance,
+		ConsumptionContract: consumptionInstance,
 	}
 }
 
 func (browser EnergyBrowserCom) WriteEnergyValues(consumption uint32, production uint32) {
 	auth := browser.getAuthObject(browser.eth.Client)
-	fmt.Println(auth.Nonce)
-	tx, err := browser.consumptionContract.SetEnerConsumption(auth, consumption)
+	//fmt.Println(auth.Nonce)
+	tx, err := browser.ConsumptionContract.SetEnerConsumption(auth, consumption)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
@@ -57,8 +57,8 @@ func (browser EnergyBrowserCom) WriteEnergyValues(consumption uint32, production
 
 	auth = browser.getAuthObject(browser.eth.Client)
 	auth.Nonce = auth.Nonce.Add(auth.Nonce, big.NewInt(1))
-	fmt.Println(auth.Nonce)
-	tx, err = browser.productionContract.SetEnerProduction(auth, production)
+	//fmt.Println(auth.Nonce)
+	tx, err = browser.ProductionContract.SetEnerProduction(auth, production)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
