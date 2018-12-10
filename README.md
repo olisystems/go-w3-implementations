@@ -50,6 +50,15 @@ func GetPassword() string {
 }
 ```
 
+### Dependencies
+
+To get missing dependencies run the `go get`command. Current external dependencies:
+
+```bash
+$ go get github.com/ethereum/go-ethereum
+$ go get github.com/mattn/go-sqlite3
+```
+
 ### Build for host system
 
 Just run _go build_ in the root directory to build the main package in _main.go_
